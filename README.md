@@ -23,5 +23,5 @@ There are many naming conventions and technical restrictions for file names, whi
 * standard formats (e.g. timestamp with YYYYMMDD)
 
 ## Contact
-Website: https://www.uni-weimar.de/rdm
-Email: kevin.lang@uni-weimar.de
+* Website: https://www.uni-weimar.de/rdm
+* Email: kevin.lang@uni-weimar.de
