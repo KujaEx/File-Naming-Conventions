@@ -22,6 +22,10 @@ There are many naming conventions and technical restrictions for file names, whi
 * maximum length (with pathname) of 256 characters
 * standard formats (e.g. timestamp with YYYYMMDD)
 
+## ToDo
+* converter function for technical conventions
+* logic behind form to generate a file name
+
 ## Contact
 * Website: https://www.uni-weimar.de/rdm
 * Email: kevin.lang@uni-weimar.de

@@ -1,1 +1,235 @@
-<h1>Hello World!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="author" content="Kevin Lang">
+  <meta name="copyright" content="Kevin Lang">
+  <meta name="description" content="Website for generating and converting file names according to naming conventions.">
+  <meta name="keywords" content="file, name, convention, research, data, generate, convert, tool">
+  <meta name="page-topic" content="Research Assistant">
+  <meta name="page-type" content="HTML form">
+  <meta name="audience" content="researchers, students"><meta http-equiv="content-language" content="en">
+  <meta name="robots" content="index, follow">
+  <meta name="DC.Creator" content="Kevin Lang">
+  <meta name="DC.Rights" content="Kevin Lang">
+  <meta name="DC.Description" content="Website for generating and converting file names according to naming conventions.">
+  <meta name="DC.Language" content="en">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="js/moment.js"></script>
+  <script src="js/sort_form.js"></script>
+  <script src="js/copy.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <h1>File Naming Conventions</h1>
+  <p>This website helps researchers to generate names for research data files following conventions and restrictions.</p>
+  <a href="#generator">Generator</a> - <a href="#converter">Converter</a> - <a href="#conventions">Technical Conventions</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2 id="generator">Generator (WIP)</h2>
+
+      <p>The name of a file can contain several parts, which describe the content of the file with meta data. You can enter your meta data in the following fields, check if you like to have it in your file name and rearrange the parts for the order of the output.</p>
+
+      <div class="formleftcolumn">
+        <label for="input_date">Date</label>
+      </div>
+      <div class="formrightcolumn">
+        <input id="input_date" name="input_date" type="date" value="2019-09-01">
+        <!-- 
+        <script>
+          document.getElementById('input_date').value = moment().format('YYYY-MM-DD');
+        </script>
+        -->
+        <label style="padding-left: 20px;" for="input_date_format">output format:</label>
+        <select id="input_date_format" name="input_date" size="1">
+          <option>YYYYMMDD</option>
+          <option>YYYY-MM-DD</option>
+          <option>YYYYMM</option>
+          <option>YYYY-MM</option>
+          <option>YYYY</option>
+          <option>YY</option>           
+        </select>
+
+        <input type="checkbox" name="check_organisation" value="check_organisation" checked>
+        <div class="smalldescription">This can be the date of creation, editing or publication of the file.</div>
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="input_organization">Organization</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="input_organization" name="input_organization"
+        placeholder="DFG">
+        <input type="checkbox" name="check_organization" value="check_organization" checked>
+        <div class="smalldescription">This can be an institution or a working group inside an organization.</div>
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="input_author">Author</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="input_author" name="input_author">
+        <input type="checkbox" name="check_author" value="check_author">
+        <div class="smalldescription">This can be the person who wrote the document or edited it most recently.</div>
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="input_category">Category</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="input_category" name="input_author">
+        <input type="checkbox" name="check_category" value="check_category">
+        <div class="smalldescription">This can be structural information, e.g. if the file is a note, poster or flyer.</div>
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="input_title">Title</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="input_title" name="input_title"
+        placeholder="Kodex GWP">
+        <input type="checkbox" name="check_title" value="check_title" checked>
+        <div class="smalldescription">This is the official title of the document or a short form or abrevation.</div>
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="input_version">Version</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="input_version" name="input_version" placeholder="2">
+        <input type="checkbox" name="check_version" value="check_version" checked>
+        <div class="smalldescription">This can be a (numeric) state or version (e.g. release, submission).</div>
+      </div>
+
+      <div class="formleftcolumn"></div>
+      <div class="formrightcolumn">
+      <input type="submit" value="Generate">
+      </div>
+     
+      <div class="formleftcolumn">
+        <label for="output_generated_file_name">Generated file name</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" 
+               id="output_generated_file_name" name="output_generated_file_name" 
+               placeholder="20190901_dfg_kodex_gwp_v02">
+          <!-- The button used to copy the text -->
+        <div class="tooltip">
+          <button onclick="copyGeneratedText()" onmouseout="outFunc()">
+            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+              Copy
+          </button>
+        </div>
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="output_file_name">Options</label>
+      </div>
+      <div class="formrightcolumn">
+        <label style="writing-mode:vertical-rl; float: left; font-size:x-small; padding-right: 5px; padding-top: 35px; font-style: italic;">
+        Drag & Drop Order</label>
+        <ul>
+          <li draggable="true">Date</li>
+          <li draggable="true">Organization</li>
+          <li draggable="true">Author</li>
+          <li draggable="true">Category</li>
+          <li draggable="true">Title</li>
+          <li draggable="true">Version</li>
+        </ul>
+
+        <label style="padding-left: 20px; padding-right: 5px; padding-top: 5px;">joint character:</label>
+        <select style="" id="input_date_format" name="input_date" size="1">
+          <option>"_" underscore</option>
+          <option>"-" hyphen</option>
+          <option>"+" plus</option>
+          <option>" " space</option>          
+        </select>
+
+        <br/><br/>
+
+        <label style="padding-left: 20px; padding-right: 5px; padding-top: 5px;">joint exception:</label>
+        <input type="number" id="joint_exception" name="joint_exception" min="0" max="5">
+
+      </div>
+
+      <p style="clear: both; padding-top: 30px;"></p>
+    </div>
+
+    <div class="card">
+      <h2 id="converter">File Name Converter (WIP)</h2>
+      <p>Do you already have a file name with with the proper elements and structure which does not follow technical naming conventions? Simply copy the name in the first field and convert it!</p>
+      
+      <div class="formleftcolumn">
+        <label for="input_old_name">Old name:</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="input_old_name" name="input_old_name">
+      </div>
+
+      <div class="formleftcolumn"></div>
+      <div class="formrightcolumn">
+      <input type="submit" value="Convert">
+      </div>
+
+      <div class="formleftcolumn">
+        <label for="output_converted_file_name">Output:</label>
+      </div>
+      <div class="formrightcolumn">
+        <input type="text" id="output_converted_file_name" name="output_converted_file_name">
+        <!-- The button used to copy the text -->
+        <div class="tooltip">
+          <button onclick="copyConvertedText()" onmouseout="outFunc()">
+            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+              Copy
+          </button>
+        </div>
+      </div>
+
+      <p style="clear: both; padding-top: 30px;">The new name follows the technical naming conventions for files as listed below.</p>
+    </div>
+
+    <div class="card">
+      <h2 id="conventions">List of technical conventions and restrictions</h2>
+      <p>There are many naming conventions and technical restrictions for file names, which make it easier for humans, systems and programs to read and understand the contents. These include:</p>
+      <ul>
+        <li>no special signs (e.g., * . ” / \ [ ] : ; | = , < ? > & $ # ! ‘( ) { })</li>
+        <li>no "Umlaut" marks or similar signs, transforming to a substitute (e.g. ä -> ae, ß -> ss, é -> e)</li>
+        <li>underscores instead of spaces</li>
+        <li>maximum length (with pathname) of 256 characters</li>
+        <li>standard formats (e.g. timestamp with YYYYMMDD)</li>
+      </ul> 
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h3>Bad File Naming</h3>
+      <img src="images/xkcd_1459.png" alt="XKCD comic depicting a person overlooking another person on their computer. The observing person sees the other's file naming conventions (example: Untitled 40 mom address.jpg) and responds with &quot;oh my god&quot;." style='height: 100%; width: 100%; object-fit: contain'>
+      <br />
+      <div style="font-size:x-small;">source: <a href="https://xkcd.com/1459/" target="_blank">https://xkcd.com/1459/</a>
+      </div>
+
+      <h3>Bad Organization</h3>
+      <img src="images/xkcd_1360.png" alt="XKCD comic showing a person digging deeper and deeper to find files which were almost forgotten." style='height: 100%; width: 100%; object-fit: contain'>
+      <br />
+      <div style="font-size:x-small;">source: <a href="https://xkcd.com/1360/" target="_blank">https://xkcd.com/1360/</a>
+      </div>
+
+      <h3>File Formats</h3>
+      <img src="images/xkcd_1301.png" alt="XKCD comic shows a diagram with file format extensions and their trust worthiness." style='height: 100%; width: 100%; object-fit: contain'>
+      <br />
+      <div style="font-size:x-small;">source: <a href="https://xkcd.com/1301/" target="_blank">https://xkcd.com/1301/</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Source Code on GitHub: <a href="https://github.com/KujaEx/File-Naming-Conventions" alt="GitHub Link">Link</a>
+</div>
+
+</body>
+</html>
