@@ -13,11 +13,13 @@
   <meta name="DC.Rights" content="Kevin Lang">
   <meta name="DC.Description" content="Website for generating and converting file names according to naming conventions.">
   <meta name="DC.Language" content="en">
+  <meta charset="utf-8"/>
 
   <link rel="stylesheet" href="style.css">
   <script src="js/moment.js"></script>
   <script src="js/sort_form.js"></script>
   <script src="js/copy.js"></script>
+  <script src="js/script.js"></script>
 </head>
 <body>
 
@@ -160,7 +162,7 @@
     </div>
 
     <div class="card">
-      <h2 id="converter">File Name Converter (WIP)</h2>
+      <h2 id="converter">File Name Converter</h2>
       <p>Do you already have a file name with with the proper elements and structure which does not follow technical naming conventions? Simply copy the name in the first field and convert it!</p>
       
       <div class="formleftcolumn">
@@ -172,7 +174,7 @@
 
       <div class="formleftcolumn"></div>
       <div class="formrightcolumn">
-      <input type="submit" value="Convert">
+      <input type="submit" value="Convert" onclick="convertText()">
       </div>
 
       <div class="formleftcolumn">
@@ -187,6 +189,7 @@
               Copy
           </button>
         </div>
+        <div class="errorlength" id="error_length"></div>
       </div>
 
       <p style="clear: both; padding-top: 30px;">The new name follows the technical naming conventions for files as listed below.</p>

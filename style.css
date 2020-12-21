@@ -164,6 +164,12 @@ select {
   color: black;
 }
 
+.errorlength{
+  font-size:x-small;
+  padding-top: 4px;
+  color: red;
+}
+
 /* Add a card effect for articles */
 .card {
   background-color: white;
