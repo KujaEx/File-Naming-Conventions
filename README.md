@@ -23,7 +23,6 @@ There are many naming conventions and technical restrictions for file names, whi
 * standard formats (e.g. timestamp with YYYYMMDD)
 
 ## ToDo
-* converter function for technical conventions
 * logic behind form to generate a file name
 
 ## Contact
