@@ -73,15 +73,83 @@ function generateText() {
   console.log("checked attributes: " + generation_order);
 
   // loop over attributes
+  output = [];
   for (var i = 0; i < generation_order.length; i++) {
     console.log(i + ": " + generation_order[i])
-    // do something
+    switch (generation_order[i]) {
+      case "Date":
+        // generate different timestamps
+        var year = (dateEntered.getFullYear()).toString();
+        var month = (dateEntered.getMonth()+1).toString();
+        var day = (dateEntered.getDate()).toString();
+        switch (date_format) {
+          case "YYYYMMDD":
+            output.push(('0000'+year).slice(-4) +
+                        ('00'+month).slice(-2) + 
+                        ('00'+day).slice(-2));
+            break;
+          case "YYYY-MM-DD":
+            output.push(('0000'+year).slice(-4) + "-" +
+                        ('00'+month).slice(-2) + "-" +
+                        ('00'+day).slice(-2));
+            break;
+          case "YYYYMM":
+            output.push(('0000'+year).slice(-4) +
+                        ('00'+month).slice(-2));
+            break;
+          case "YYYY-MM":
+            output.push(('0000'+year).slice(-4) + "-" +
+                        ('00'+month).slice(-2));
+            break;
+          case "YYYY":
+            output.push(('0000'+year).slice(-4));
+            break;
+          case "YY":
+            output.push(('0000'+year).slice(-4).slice(-2));
+            break;
+        }
+        break;
+      case "Organization":
+        output.push(convertByTechnicalNamingConventions(organization_text));
+        break;
+      case "Author":
+         output.push(convertByTechnicalNamingConventions(author_text));
+        break;
+      case "Category":
+        output.push(convertByTechnicalNamingConventions(category_text));
+        break;
+      case "Title":
+        output.push(convertByTechnicalNamingConventions(title_text));
+        break;
+      case "Version":
+        output.push(convertByTechnicalNamingConventions(version_text));
+        break;
+    }
   }
+
+  // get joint character
+  switch (joint_character) {
+    case "\"_\" underscore":
+      joint_character = "_";
+      break;
+    case "\"-\" hyphen":
+      joint_character = "-";
+      break;
+    case "\"+\" plus":
+      joint_character = "+";
+      break;
+    case "\" \" space":
+      joint_character = " ";
+      break;
+  }
+
+  //output
+  console.log(output)
 }
 
 function convertText() {
   var text = document.getElementById("input_old_name").value;
-  if(text.length > 0) {
+  if (text.length > 0) {
     text = convertByTechnicalNamingConventions(text);
     document.getElementById('output_converted_file_name').value = text;
     document.getElementById('error_length').innerHTML = '';
@@ -135,7 +203,7 @@ function substituteLanguageSecificCharacters(str) {
 }
 
 function check_and_remove(list, check, listelement) {
-  if(!check) {
+  if (!check) {
     const index = list.indexOf(listelement);
     if (index > -1) {
       list.splice(index, 1);
