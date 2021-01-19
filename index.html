@@ -41,11 +41,10 @@
       </div>
       <div class="formrightcolumn">
         <input id="input_date" name="input_date" type="date" value="2019-09-01">
-        <!-- 
         <script>
           document.getElementById('input_date').value = moment().format('YYYY-MM-DD');
         </script>
-        -->
+
         <label style="padding-left: 20px;" for="input_date_format">output format:</label>
         <select id="input_date_format" name="input_date" size="1">
           <option>YYYYMMDD</option>
@@ -56,7 +55,7 @@
           <option>YY</option>           
         </select>
 
-        <input type="checkbox" name="check_organisation" value="check_organisation" checked>
+        <input id="input_date_check" type="checkbox" name="check_date" checked>
         <div class="smalldescription">This can be the date of creation, editing or publication of the file.</div>
       </div>
 
@@ -66,7 +65,7 @@
       <div class="formrightcolumn">
         <input type="text" id="input_organization" name="input_organization"
         placeholder="DFG">
-        <input type="checkbox" name="check_organization" value="check_organization" checked>
+        <input id="input_organization_check" type="checkbox" name="check_organization" checked>
         <div class="smalldescription">This can be an institution or a working group inside an organization.</div>
       </div>
 
@@ -75,7 +74,7 @@
       </div>
       <div class="formrightcolumn">
         <input type="text" id="input_author" name="input_author">
-        <input type="checkbox" name="check_author" value="check_author">
+        <input id="input_author_check" type="checkbox" name="check_author">
         <div class="smalldescription">This can be the person who wrote the document or edited it most recently.</div>
       </div>
 
@@ -84,7 +83,7 @@
       </div>
       <div class="formrightcolumn">
         <input type="text" id="input_category" name="input_author">
-        <input type="checkbox" name="check_category" value="check_category">
+        <input id="input_category_check" type="checkbox" name="check_category">
         <div class="smalldescription">This can be structural information, e.g. if the file is a note, poster or flyer.</div>
       </div>
 
@@ -94,7 +93,7 @@
       <div class="formrightcolumn">
         <input type="text" id="input_title" name="input_title"
         placeholder="Kodex GWP">
-        <input type="checkbox" name="check_title" value="check_title" checked>
+        <input id="input_title_check" type="checkbox" name="check_title" checked>
         <div class="smalldescription">This is the official title of the document or a short form or abrevation.</div>
       </div>
 
@@ -103,13 +102,13 @@
       </div>
       <div class="formrightcolumn">
         <input type="text" id="input_version" name="input_version" placeholder="2">
-        <input type="checkbox" name="check_version" value="check_version" checked>
+        <input id="input_version_check" type="checkbox" name="check_version" checked>
         <div class="smalldescription">This can be a (numeric) state or version (e.g. release, submission).</div>
       </div>
 
       <div class="formleftcolumn"></div>
       <div class="formrightcolumn">
-      <input type="submit" value="Generate">
+      <input type="submit" value="Generate" onclick="generateText()">
       </div>
      
       <div class="formleftcolumn">
@@ -134,7 +133,7 @@
       <div class="formrightcolumn">
         <label style="writing-mode:vertical-rl; float: left; font-size:x-small; padding-right: 5px; padding-top: 35px; font-style: italic;">
         Drag & Drop Order</label>
-        <ul>
+        <ul id="generation_order">
           <li draggable="true">Date</li>
           <li draggable="true">Organization</li>
           <li draggable="true">Author</li>
@@ -144,7 +143,7 @@
         </ul>
 
         <label style="padding-left: 20px; padding-right: 5px; padding-top: 5px;">joint character:</label>
-        <select style="" id="input_date_format" name="input_date" size="1">
+        <select style="" id="input_joint_character" name="input_date" size="1">
           <option>"_" underscore</option>
           <option>"-" hyphen</option>
           <option>"+" plus</option>
@@ -155,7 +154,7 @@
         <br/><br/>
 
         <label style="padding-left: 20px; padding-right: 5px; padding-top: 5px;">joint exception:</label>
-        <input type="number" id="joint_exception" name="joint_exception" min="0" max="5">
+        <input type="number" id="input_joint_exception" name="joint_exception" min="0" max="5">
 
       </div>
 
