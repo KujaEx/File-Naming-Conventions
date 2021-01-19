@@ -63,8 +63,20 @@ function generateText() {
   var joint_exception = document.getElementById("input_joint_exception").value;
   console.log("joint exception at: " + joint_exception);
 
-  // start generating name ...
+  // remove attributes by check values
+  generation_order = check_and_remove(generation_order, date_check, "Date");
+  generation_order = check_and_remove(generation_order, organization_check, "Organization");
+  generation_order = check_and_remove(generation_order, author_check, "Author");
+  generation_order = check_and_remove(generation_order, category_check, "Category");
+  generation_order = check_and_remove(generation_order, title_check, "Title");
+  generation_order = check_and_remove(generation_order, version_check, "Version");
+  console.log("checked attributes: " + generation_order);
 
+  // loop over attributes
+  for (var i = 0; i < generation_order.length; i++) {
+    console.log(i + ": " + generation_order[i])
+    // do something
+  }
 }
 
 function convertText() {
@@ -120,4 +132,17 @@ function substituteLanguageSecificCharacters(str) {
     };
 
     return str;
+}
+
+function check_and_remove(list, check, listelement) {
+  if(!check) {
+    const index = list.indexOf(listelement);
+    if (index > -1) {
+      list.splice(index, 1);
+    }
+    return list;
+  }
+  else {
+    return list;
+  }
 }
