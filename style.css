@@ -164,6 +164,13 @@ select {
   color: black;
 }
 
+.smalldescription2{
+  font-size:x-small;
+  padding-top: 4px;
+  padding-left: 135px;
+  color: black;
+}
+
 .errorlength{
   font-size:x-small;
   padding-top: 4px;

@@ -127,7 +127,7 @@ function generateText() {
     }
   }
 
-  // get joint character
+  // get joint character and make output
   switch (joint_character) {
     case "\"_\" underscore":
       joint_character = "_";
@@ -143,8 +143,27 @@ function generateText() {
       break;
   }
 
-  //output
-  console.log(output)
+  // create output and send to form
+  if (joint_character != "CamelCase") {
+    // concatinate output string
+    output_string = output.join(joint_character);
+
+    // remove joint_character at specific position
+    if (joint_exception > 0 && joint_exception < output.length) {
+      String.prototype.removeStr = removeStr;
+      output_string = removeStr(output_string, joint_character, joint_exception);
+    }
+  }
+  else {
+    // create CamelCase
+    for (var i = 0; i < output.length; i++) {
+      output[i] = output[i].charAt(0).toUpperCase() + output[i].slice(1)
+    }
+    output_string = output.join("");
+  }
+
+  // output to form
+  document.getElementById('output_generated_file_name').value = output_string;
 }
 
 function convertText() {
@@ -213,4 +232,25 @@ function check_and_remove(list, check, listelement) {
   else {
     return list;
   }
+}
+
+// source: https://www.tutorialspoint.com/string-function-to-replace-nth-occurrence-of-a-character-in-a-string-javascript
+function removeStr(text, subStr, num){
+   if(!text.includes(subStr)){
+      return text;
+   }
+   var start = 0; 
+   var end = subStr.length;
+   var occurences = 0;
+   for(; ;end < text.length){
+      if(text.substring(start, end) == subStr){
+         occurences++;
+      };
+      if(occurences == num){
+         return text.substring(0, start) + text.substring(end, text.length);
+      };
+      end++;
+      start++;
+   }
+   return text;
 }

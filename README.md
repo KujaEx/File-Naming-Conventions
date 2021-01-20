@@ -23,7 +23,7 @@ There are many naming conventions and technical restrictions for file names, whi
 * standard formats (e.g. timestamp with YYYYMMDD)
 
 ## ToDo
-* logic behind form to generate a file name
+* all implemented, if there are any bugs or desired features you can ask me
 
 ## Contact
 * Website: https://www.uni-weimar.de/rdm
