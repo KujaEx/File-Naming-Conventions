@@ -23,7 +23,7 @@ There are many naming conventions and technical restrictions for file names, whi
 * standard formats (e.g. timestamp with YYYYMMDD)
 
 ## ToDo
-* all implemented, if there are any bugs or desired features you can ask me
+* implement choice for space substitute in e.g. title (right now it is always underscore)
 
 ## Contact
 * Website: https://www.uni-weimar.de/rdm
